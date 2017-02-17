@@ -1,0 +1,28 @@
+Order Allow,Deny
+Allow from all
+
+AddDefaultCharset utf-8
+
+RewriteEngine on
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP
+RewriteRule ^index\.php$ http://%{HTTP_HOST}/ [R=301,L]
+
+RewriteBase /
+
+RewriteCond %{HTTPS} on
+RewriteRule ^.*$ http://%{SERVER_NAME}%{REQUEST_URI}
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+<ifmodule mod_expires.c>
+<Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 2 days"
+</Filesmatch>
+</ifmodule>
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
