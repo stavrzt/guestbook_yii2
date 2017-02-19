@@ -20,16 +20,12 @@ class DefaultController extends Controller
     {
         $model = new UsersMessagesData;
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->save();
-            //return $this->refresh();
-            echo '<h1>NORMAL</h1>';
-        }
-        else{
-            echo '<h1>BAD</h1>';
-            echo var_dump($model->getErrors());
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->refresh();
         }
 
-        return $this->render('index');
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
 }

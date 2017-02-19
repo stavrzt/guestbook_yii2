@@ -16,9 +16,6 @@ echo ListView::widget([
 'dataProvider' => $dataProvider,
 'itemView' => '_list',
 ]);
-
-$model = new UsersMessagesData;
-
 ?>
 
 <?= $this->render('_form', [

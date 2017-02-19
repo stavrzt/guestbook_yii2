@@ -30,12 +30,12 @@ class UsersMessagesData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['guest_name', 'guest_email', 'message'], 'required'],
+            [['guest_name', 'guest_email', 'message', 'mycaptcha'], 'required'],
             [['guest_name'], 'string', 'max' => 64],
             [['guest_email'], 'string', 'max' => 100],
             [['message'], 'string', 'max' => 1000],
             ['mycaptcha', 'captcha'],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LeEHxYUAAAAAEeBxEUloQgBvVB3h3f9S7vINSDP'],
+            //[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LeEHxYUAAAAAEeBxEUloQgBvVB3h3f9S7vINSDP'],
         ];
     }
 

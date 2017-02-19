@@ -15,13 +15,13 @@ use yii\captcha\Captcha;
 
 <?=$form->field($model, 'mycaptcha')->widget(Captcha::classname(), [
     'captchaAction'=>'/site/captcha',
-    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-    ]); ?>
+    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div>{error}</div>',
+    ]); /*?>
 
 <?= $form->field($model, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha::className(),
     ['siteKey' => '6LeEHxYUAAAAADgyueHc2okWxIUZLWZ6tteqPFJ5']
-) ?>
+)*/ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
