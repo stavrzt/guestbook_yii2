@@ -1,7 +1,8 @@
 <?php
-use app\modules\main\models\UsersMessagesData;
+
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
+use app\modules\main\models\UsersMessagesData;
 
 $dataProvider = new ActiveDataProvider([
 'query' => UsersMessagesData::find(),
@@ -15,3 +16,11 @@ echo ListView::widget([
 'dataProvider' => $dataProvider,
 'itemView' => '_list',
 ]);
+
+$model = new UsersMessagesData;
+
+?>
+
+<?= $this->render('_form', [
+    'model' => $model,
+]) ?>

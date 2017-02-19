@@ -2,7 +2,6 @@
 
 namespace app\modules\main\models;
 
-use Yii;
 
 /**
  * This is the model class for table "users_messages_data".
@@ -15,6 +14,8 @@ use Yii;
  */
 class UsersMessagesData extends \yii\db\ActiveRecord
 {
+    public $mycaptcha;
+    public $reCaptcha;
     /**
      * @inheritdoc
      */
@@ -30,10 +31,11 @@ class UsersMessagesData extends \yii\db\ActiveRecord
     {
         return [
             [['guest_name', 'guest_email', 'message'], 'required'],
-            [['date_added'], 'safe'],
             [['guest_name'], 'string', 'max' => 64],
             [['guest_email'], 'string', 'max' => 100],
             [['message'], 'string', 'max' => 1000],
+            ['mycaptcha', 'captcha'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LeEHxYUAAAAAEeBxEUloQgBvVB3h3f9S7vINSDP'],
         ];
     }
 
@@ -43,7 +45,6 @@ class UsersMessagesData extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'guest_name' => 'Guest Name',
             'guest_email' => 'Guest Email',
             'message' => 'Message',
