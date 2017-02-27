@@ -7,7 +7,7 @@ use app\modules\main\models\UsersMessagesData;
 $dataProvider = new ActiveDataProvider([
 'query' => UsersMessagesData::find(),
 'pagination' => [
-    'pageSize' => 20,
+    'pageSize' => 10,
     'validatePage' => false,
 ],
 ]);
@@ -18,6 +18,16 @@ echo ListView::widget([
 ]);
 ?>
 
-<?= $this->render('_form', [
-    'model' => $model,
-]) ?>
+<?php
+
+if(Yii::$app->user->isGuest)
+{
+   echo '<br><h3>Login to adding comments!</h3>';
+}
+else{
+    echo $this->render('_form', [
+        'model' => $model,
+    ]) ;
+}
+
+?>

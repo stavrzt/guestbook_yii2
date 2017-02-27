@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\main\controllers;
 
 use yii\web\Controller;
@@ -7,7 +6,6 @@ use Yii;
 use app\modules\main\models\UsersMessagesData;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-
 
 /**
  * Default controller for the `main` module
@@ -22,7 +20,10 @@ class DefaultController extends Controller
     {
         $model = new UsersMessagesData;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && !Yii::$app->user->isGuest) {
+            $model->guest_name = Yii::$app->user->identity->login;
+            $model->guest_email = Yii::$app->user->identity->email;
+            $model->save();
             return $this->refresh();
         }
 

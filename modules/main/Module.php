@@ -5,7 +5,7 @@ namespace app\modules\main;
 /**
  * main module definition class
  */
-class Guestbook extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc
